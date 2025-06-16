@@ -1,0 +1,36 @@
+/* Initial reset */
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+body {
+  margin: 0;
+}
+
+/* Site styles */
+/* * Maquetar versión Escritorio */
+.edge {
+  border: thin solid red;
+}
+
+.container {
+  border: thin solid green;
+}
+
+.container-display {
+  border: thin solid blue;
+}
+
+.display {
+  border: thin solid orangered;
+}
+
+.container-keys {
+  border: thin solid orange;
+}
