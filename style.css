@@ -11,26 +11,60 @@ html {
 
 body {
   margin: 0;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 /* Site styles */
-/* * Maquetar versión Escritorio */
-.edge {
-  border: thin solid red;
+.main {
+  border: thick solid gray;
+  border-radius: 10px;
+  height: 30em;
+  width: 40%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .container {
-  border: thin solid green;
+  border: thick solid red;
+  border-radius: inherit;
+  height: 27.5em;
+  width: 95%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
 }
 
 .container-display {
-  border: thin solid blue;
+  border: thin solid green;
+  border-radius: 6px;
+  height: 6em;
+  width: inherit;
+  padding: 12px;
 }
 
-.display {
-  border: thin solid orangered;
+.digits {
+  border: thin solid pink;
+  font-size: 3.5em;
+  font-weight: 500;
+  font-weight: bold;
+  text-align: end;
 }
 
 .container-keys {
-  border: thin solid orange;
+  border: thin solid orangered;
+  height: 17em;
+  width: inherit;
+}
+
+.container-keys > button {
+  /* border-radius: 10px; */
+  /* height: 6em; */
+  /* width: 6em; */
 }
