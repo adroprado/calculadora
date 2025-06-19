@@ -1,6 +1,23 @@
+/* Custom properties */
+:root {
+  --color-key-operators: #f7df1e;
+  --color-key-equal: green;
+  --color-key-retreat: purple;
+  --color-key-clean: red;
+  --height-main: 30em;
+  --width-main: 30%; /*40%*/
+  --height-container: 27.5em;
+  --width-container: 95%;
+  --size-keys-button: 2em;
+  --height-keys-button-child: 3.5em;
+  --width-keys-button-child: 2em;
+  --size-img-github: 2em;
+}
+
 /* Initial reset */
 html {
   box-sizing: border-box;
+  font-size: 16px;
 }
 
 *,
@@ -13,6 +30,8 @@ body {
   margin: 0;
   height: 100vh;
   width: 100vw;
+  /* min-width: 1350px; */
+  /* max-width: 1360px; */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -23,8 +42,9 @@ body {
 .main {
   border: thick solid gray;
   border-radius: 10px;
-  height: 30em;
-  width: 40%;
+  fill: red;
+  height: var(--height-main);
+  width: var(--width-main);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -33,8 +53,8 @@ body {
 .container {
   border: thick solid red;
   border-radius: inherit;
-  height: 27.5em;
-  width: 95%;
+  height: var(--height-container);
+  width: var(--width-container);
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
@@ -60,11 +80,52 @@ body {
 .container-keys {
   border: thin solid orangered;
   height: 17em;
+  height: 19em;
+  /* todo Elegir un width */
+  width: 80%;
+  width: 85%;
+  width: 90%;
   width: inherit;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: center;
+  /* align-content: space-evenly; */
 }
 
 .container-keys > button {
-  /* border-radius: 10px; */
-  /* height: 6em; */
-  /* width: 6em; */
+  border-radius: 10px;
+  font-size: 2rem;
+  font-weight: bold;
+  height: var(--size-keys-button);
+  width: var(--size-keys-button);
+}
+
+.container-keys button:nth-child(13),
+:nth-child(14),
+:nth-child(15),
+:nth-child(16) {
+  color: var(--color-key-operators);
+}
+
+.container-keys button:nth-child(12) {
+  color: var(--color-key-equal);
+}
+
+.container-keys button:nth-child(17) {
+  color: var(--color-key-clean);
+  height: var(--height-keys-button-child);
+  width: var(--width-keys-button-child);
+}
+
+.container-keys button:nth-child(18) {
+  color: var(--color-key-retreat);
+  height: var(--height-keys-button-child);
+  width: var(--width-keys-button-child);
+}
+
+.container-keys > a img {
+  height: var(--size-img-github);
+  width: var(--size-img-github);
 }
