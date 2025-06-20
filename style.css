@@ -1,17 +1,19 @@
 /* Custom properties */
 :root {
-  --color-key-operators: #f7df1e;
-  --color-key-equal: green;
-  --color-key-retreat: purple;
-  --color-key-clean: red;
   --height-main: 30em;
-  --width-main: 30%; /*40%*/
+  --width-main: 25em; /*25%*/
   --height-container: 27.5em;
   --width-container: 95%;
   --size-keys-button: 2em;
   --height-keys-button-child: 3.5em;
   --width-keys-button-child: 2em;
-  --size-img-github: 2em;
+  --size-img-github: 2.2em;
+  --bg-color-main: #e9e9e9; /* #c0c0c0 */
+  --bg-color-secondary: #c0c0c0; /* #e9e9e9 */
+  --color-key-operators: #dfc917; /* #f7df1e */
+  --color-key-equal: green;
+  --color-key-retreat: purple;
+  --color-key-clean: red;
 }
 
 /* Initial reset */
@@ -30,8 +32,6 @@ body {
   margin: 0;
   height: 100vh;
   width: 100vw;
-  /* min-width: 1350px; */
-  /* max-width: 1360px; */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -40,9 +40,9 @@ body {
 
 /* Site styles */
 .main {
-  border: thick solid gray;
+  background-color: var(--bg-color-main);
+  /* border: thick solid gray; */
   border-radius: 10px;
-  fill: red;
   height: var(--height-main);
   width: var(--width-main);
   display: flex;
@@ -51,7 +51,8 @@ body {
 }
 
 .container {
-  border: thick solid red;
+  background-color: var(--bg-color-secondary);
+  /* border: thick solid red; */
   border-radius: inherit;
   height: var(--height-container);
   width: var(--width-container);
@@ -62,29 +63,30 @@ body {
 }
 
 .container-display {
-  border: thin solid green;
+  background-color: var(--bg-color-main);
+  /* border: thin solid green; */
   border-radius: 6px;
-  height: 6em;
+  height: 5.5em;
   width: inherit;
   padding: 12px;
 }
 
 .digits {
-  border: thin solid pink;
+  /* border: thin solid pink; */
+  background-color: var(--bg-color-secondary);
+  border-radius: 6px;
   font-size: 3.5em;
   font-weight: 500;
   font-weight: bold;
+  padding-inline-end: 5px;
   text-align: end;
 }
 
 .container-keys {
-  border: thin solid orangered;
+  background-color: var(--bg-color-secondary);
+  /* border: thin solid orangered; */
   height: 17em;
   height: 19em;
-  /* todo Elegir un width */
-  width: 80%;
-  width: 85%;
-  width: 90%;
   width: inherit;
   display: flex;
   flex-direction: column;
@@ -96,10 +98,16 @@ body {
 
 .container-keys > button {
   border-radius: 10px;
+  border-style: none;
+  background-color: var(--bg-color-main);
   font-size: 2rem;
   font-weight: bold;
   height: var(--size-keys-button);
   width: var(--size-keys-button);
+}
+
+.container-keys > button:hover {
+  background-color: #ecf0f1;
 }
 
 .container-keys button:nth-child(13),
@@ -123,6 +131,12 @@ body {
   color: var(--color-key-retreat);
   height: var(--height-keys-button-child);
   width: var(--width-keys-button-child);
+}
+
+.container-keys > a {
+  background-color: white;
+  border-radius: 50%;
+  padding: 0.2em;
 }
 
 .container-keys > a img {
