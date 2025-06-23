@@ -71,7 +71,7 @@ body {
   padding: 12px;
 }
 
-.digits {
+.display {
   /* border: thin solid pink; */
   background-color: var(--bg-color-secondary);
   border-radius: 6px;
