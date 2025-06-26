@@ -27,10 +27,21 @@ function Calculadora(
   clear,
   del
 ) {
+  /*   const $DISPLAY = document.querySelector(display),
+    $NUMBERS = document.querySelectorAll(numbers),
+    $OPERATIONS = document.querySelectorAll(operations),
+    $DECIMAL_POINT = document.getElementById(decimalPoint),
+    $EQUAL = document.getElementById(equal),
+    $CLEAR = document.getElementById(clear),
+    $DELETE = document.getElementById(del); */
+
   document.addEventListener("click", (e) => {
     //Realiza operación
     if (e.target.matches(numbers)) {
-      console.log("Número");
+      console.log(e);
+      console.log(e.type);
+      console.log(e.target);
+      console.log(e.value);
     }
 
     //Limpiar display
