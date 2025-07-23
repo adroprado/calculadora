@@ -1,16 +1,3 @@
-/* 
-clearScreen();
-
-deleteLastDigit();
-
-addNumber(digit);
-
-selectOperator(op);
-
-calculate();
-
-updateScreen(); */
-
 // Variables que almacenan elementos del DOM
 const $DISPLAY = document.querySelector(".display"),
   $CALCULADORA = document.querySelector(".container-keys");
@@ -21,18 +8,23 @@ let currentNumber = "0", // Almacena número actual
   operator = null, // Almacena operador seleccionado
   waitForSecondOperator = false;
 
-// Lógica de la operación
-const calculate = (numberOne, operator, numberTwo) => {
+// Función que realiza la operación
+const calculate = (previousNumber, operator, currentNumber) => {
+  let numberOne = parseFloat(previousNumber),
+    numberTwo = parseFloat(currentNumber);
+
   switch (operator) {
     case "+":
-      // Los parámetros que traen los números en formato String, los vamos a convertir a Numbers.
-      break;
+      return numberOne + numberTwo;
+
     case "-":
-      break;
+      return numberOne - numberTwo;
+
     case "*":
-      break;
+      return numberOne * numberTwo;
+
     case "/":
-      break;
+      return numberOne / numberTwo;
   }
 };
 
@@ -41,30 +33,32 @@ const updateDisplay = (currentNumber) => {
   $DISPLAY.textContent = currentNumber;
 };
 
+updateDisplay(currentNumber); // Muestra el 0 en pantalla desde un inicio
+
 // Delegación de Eventos
 $CALCULADORA.addEventListener("click", (e) => {
   //Variables que almacenan selectores validos que les aplico el evento "click"
   const NUMBERS = e.target.matches(".number"),
     OPERATIONS = e.target.matches(".operation"),
-    // DECIMAL_POINT = e.target.matches(".decimal"),
     EQUAL = e.target.matches(".equal"),
     CLEAR = e.target.matches(".clear"),
     DELETE = e.target.matches(".delete");
 
-  console.log(currentNumber);
-
   if (NUMBERS) {
     const value = e.target.dataset.value; // Variable que obtiene el valor del dataAttribute
+
+    // Validación - Manipulación de un solo punto
+    if (value === "." && currentNumber.includes(".")) {
+      return; // Si es un punto y ya existe uno, sal de la función
+    }
+
     if (waitForSecondOperator) {
       currentNumber = value;
-      console.log(currentNumber);
       waitForSecondOperator = false;
     } else if (currentNumber === "0" && value !== ".") {
       currentNumber = value; // Reemplaza el "0" inicial si no es un punto
-      console.log(currentNumber);
     } else {
       currentNumber += value; // Concatena varios valores
-      console.log(currentNumber);
     }
     updateDisplay(currentNumber);
   }
@@ -75,13 +69,35 @@ $CALCULADORA.addEventListener("click", (e) => {
       operator !== null &&
       !waitForSecondOperator
     ) {
-      // * Si ya hay un cálculo pendiente, resuélvelo primero
-      currentNumber = calculate(currentNumber, operator, previousNumber); // Llama a tu función de cálculo aquí y actualiza currentNumber con el resultado
+      currentNumber = calculate(previousNumber, operator, currentNumber); // Llama a tu función de cálculo aquí y actualiza currentNumber con el resultado
       updateDisplay(currentNumber);
     }
+
     previousNumber = currentNumber; // El número actual se convierte en el anterior
     operator = e.target.dataset.operator; // Guarda el nuevo operador
     waitForSecondOperator = true; // Prepara para el siguiente número
     // No actualices la pantalla aquí con el operador, la pantalla sigue mostrando previousNumber hasta que se ingrese el siguiente número
   }
+
+  // * Programar lógica de EQUAL "="
+  /* if (EQUAL) {
+    if (previousNumber && operator) {
+      currentNumber = calculate();
+      previousNumber = null;
+      operator = null;
+      waitForSecondOperator = true;
+    }
+  } */
+
+  // Limpia (reinicia) los valores a su estado inicial
+  if (CLEAR) {
+    currentNumber = "0";
+    previousNumber = null;
+    operator = null;
+    waitForSecondOperator = false;
+    updateDisplay(currentNumber);
+  }
+
+  // * Programar lógica de DELETE "<="
+  // if(DELETE){}
 });
