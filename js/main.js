@@ -79,15 +79,16 @@ $CALCULADORA.addEventListener("click", (e) => {
     // No actualices la pantalla aquí con el operador, la pantalla sigue mostrando previousNumber hasta que se ingrese el siguiente número
   }
 
-  // * Programar lógica de EQUAL "="
-  /* if (EQUAL) {
+  // Entrega resultado con el singo "="
+  if (EQUAL) {
     if (previousNumber && operator) {
-      currentNumber = calculate();
+      currentNumber = calculate(previousNumber, operator, currentNumber);
       previousNumber = null;
       operator = null;
       waitForSecondOperator = true;
+      updateDisplay(currentNumber);
     }
-  } */
+  }
 
   // Limpia (reinicia) los valores a su estado inicial
   if (CLEAR) {
@@ -98,6 +99,17 @@ $CALCULADORA.addEventListener("click", (e) => {
     updateDisplay(currentNumber);
   }
 
-  // * Programar lógica de DELETE "<="
-  // if(DELETE){}
+  // Elimina/Borra un dígito a la vez
+  if (DELETE) {
+    // Si el número actual tiene más de un dígito, elimina el último
+    if (currentNumber.length > 1) {
+      currentNumber = currentNumber.slice(0, -1);
+    } else {
+      // Si tiene un solo dígito o ya se ha vaciado, establece a "0"
+      // Esta condición manejará ambos casos: si queda 1 dígito y lo borras, o si ya estaba vacío
+      currentNumber = "0";
+    }
+
+    updateDisplay(currentNumber);
+  }
 });
