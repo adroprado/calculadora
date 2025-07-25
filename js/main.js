@@ -24,7 +24,11 @@ const calculate = (previousNumber, operator, currentNumber) => {
       return numberOne * numberTwo;
 
     case "/":
-      return numberOne / numberTwo;
+      if (numberTwo === 0) {
+        return ($DISPLAY.textContent = "Error ");
+      } else {
+        return (numberOne / numberTwo).toFixed(6);
+      }
   }
 };
 

@@ -80,6 +80,8 @@ body {
   font-weight: bold;
   padding-inline-end: 5px;
   text-align: end;
+  /* Ocultando el desbordamiento de dígitos del display */
+  overflow-x: hidden;
 }
 
 .container-keys {
