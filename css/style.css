@@ -108,7 +108,8 @@ Site styles
 }
 
 .container-keys > button:hover {
-  background-color: #ecf0f1;
+  /* background-color: #ecf0f1; */
+  background-color: #d6d6d6;
 }
 
 .container-keys button:nth-child(13),
