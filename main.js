@@ -17,17 +17,23 @@ let currentNumber = "0", // Almacena número actual
 // ===========================================
 const calculate = (previousNumber, operator, currentNumber) => {
   let numberOne = parseFloat(previousNumber),
-    numberTwo = parseFloat(currentNumber);
+    numberTwo = parseFloat(currentNumber),
+    result;
+
+  const DECIMAL_LIMIT = 6;
 
   switch (operator) {
     case "+":
-      return numberOne + numberTwo;
+      result = numberOne + numberTwo;
+      break;
 
     case "-":
-      return numberOne - numberTwo;
+      result = numberOne - numberTwo;
 
+      break;
     case "*":
-      return numberOne * numberTwo;
+      result = numberOne * numberTwo;
+      break;
 
     case "/":
       if (numberTwo === 0) {
@@ -35,14 +41,27 @@ const calculate = (previousNumber, operator, currentNumber) => {
         return ($DISPLAY.textContent = "Error ");
       } else {
         // De lo contrario que realicé la operación, mostrando un máximo de 6 decimales
-        return (numberOne / numberTwo).toFixed(6);
+
+        result = numberOne / numberTwo;
       }
+      break;
     default:
       // En caso de un operador no reconocido, no se realiza ninguna acción
       // o se devuelve el segundo número, dependiendo del comportamiento deseado.
       // Para esta calculadora, el flujo de eventos asegura un operador válido.
       return currentNumber; // Retorna el número actual sin cambios si el operador no es reconocido
   }
+
+  // --- Lógica para truncar decimales ---
+  // Si el resultado es un número de punto flotante y tiene más de DECIMAL_LIMIT decimales,
+  // se trunca sin redondear.
+  if (result !== Math.trunc(result)) {
+    // Comprueba si el número es decimal
+    const factor = Math.pow(10, DECIMAL_LIMIT);
+    result = Math.trunc(result * factor) / factor;
+  }
+
+  return result.toString(); // Devuelve el resultado como una cadena para que el display lo muestre.
 };
 
 // ===========================================
