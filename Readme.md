@@ -16,12 +16,12 @@ En esta calculadora se pueden realizar **operaciones básicas** como la **suma**
 
 Puedes hacer uso del mouse (evento **_"click"_**) o teclado (evento **_"keyup"_**)
 
-Teclas en evento **_"keyup"_**:
+Teclas en evento **_keyup_**:
 
 - Teclado alfanumérico: **(0-9), (.)**
-- Teclas para operadores: **(+), (-), (\*), (/)**
+- Teclas operadores: **(+), (-), (\*), (/)**
 - Tecla resultado (=): **_Enter_**
-- Teclas limpiar pantalla (C): **_Esc_**
-- Teclas borrar dígito (<=): **_Backspace_**
+- Tecla limpiar pantalla (C): **_Esc_**
+- Tecla borrar dígito (<=): **_Backspace_**
 
 Proyecto elaborado por [adroprado](https://github.com/adroprado)
