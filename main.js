@@ -20,7 +20,7 @@ const calculate = (previousNumber, operator, currentNumber) => {
     numberTwo = parseFloat(currentNumber),
     result;
 
-  const DECIMAL_LIMIT = 6;
+  const DECIMAL_LIMIT = 6; // Define el límite de decimales a mostrar sin redondear.
 
   switch (operator) {
     case "+":
@@ -37,11 +37,8 @@ const calculate = (previousNumber, operator, currentNumber) => {
 
     case "/":
       if (numberTwo === 0) {
-        // Mensaje de "error", si el usuario realiza división entre cero.
-        return ($DISPLAY.textContent = "Error ");
+        return ($DISPLAY.textContent = "Error "); // Mensaje de "error", si el usuario realiza división entre cero.
       } else {
-        // De lo contrario que realicé la operación, mostrando un máximo de 6 decimales
-
         result = numberOne / numberTwo;
       }
       break;
@@ -51,25 +48,21 @@ const calculate = (previousNumber, operator, currentNumber) => {
       // Para esta calculadora, el flujo de eventos asegura un operador válido.
       return currentNumber; // Retorna el número actual sin cambios si el operador no es reconocido
   }
-
-  // --- Lógica para truncar decimales ---
-  // Si el resultado es un número de punto flotante y tiene más de DECIMAL_LIMIT decimales,
-  // se trunca sin redondear.
+  // --- Lógica para truncar decimales ---  si el número es decimal y excede el límite de decimales, se recorta.
   if (result !== Math.trunc(result)) {
     // Comprueba si el número es decimal
     const factor = Math.pow(10, DECIMAL_LIMIT);
     result = Math.trunc(result * factor) / factor;
   }
 
-  return result.toString(); // Devuelve el resultado como una cadena para que el display lo muestre.
+  return result.toString(); // Devuelve el resultado como una cadena.
 };
 
 // ===========================================
 // Función que actualiza la variable del DOM
 // ===========================================
 const updateDisplay = (currentNumber) => {
-  // Actualizael contenido de la pantalla de la calculadora
-  $DISPLAY.textContent = currentNumber;
+  $DISPLAY.textContent = currentNumber; // Actualizael contenido de la pantalla de la calculadora
 };
 
 updateDisplay(currentNumber); // Muestra el valor de 0 en pantalla desde un inicio
@@ -78,8 +71,8 @@ updateDisplay(currentNumber); // Muestra el valor de 0 en pantalla desde un inic
 // Función que maneja las entradas de Click y Teclado
 // ===========================================
 const handleInput = (value, type) => {
-  // Validando el valor del type, si, coincide con la clase que presionamos
   // --- Lógica para Botones Numéricos (0-9, .) ---
+  // Validando el valor del type, si coincide con la clase que presionamos
   if (type === "number") {
     // Previene la adición de múltiples puntos decimales en el mismo número.
     if (value === "." && currentNumber.includes(".")) {
@@ -87,12 +80,12 @@ const handleInput = (value, type) => {
     }
 
     // Si `waitForSecondOperator` es true (después de un operador o un '='),
-    // el nuevo número reemplaza el `currentNumber`.
     if (waitForSecondOperator) {
+      // el nuevo número reemplaza el `currentNumber`.
       currentNumber = value;
       waitForSecondOperator = false; // Reseteamos a su valor inicial
-    } else if (currentNumber === "0" && value !== ".") {
       // Si `currentNumber` es "0" (estado inicial) y el dígito no es un punto,
+    } else if (currentNumber === "0" && value !== ".") {
       // reemplaza el "0" para evitar números como "07".
       currentNumber = value;
     } else {
@@ -181,18 +174,21 @@ $CALCULADORA.addEventListener("click", (e) => {
 // Delegación de Eventos + Evento "keyup" (Interacción del Usuario)
 // ===========================================
 document.addEventListener("keyup", (e) => {
+  // Maneja números y el punto decimal
   if (/[0-9]/.test(e.key) || e.key === ".") handleInput(e.key, "number");
+  // Maneja operaciones
   if (e.key === "+" || e.key === "-" || e.key === "*" || e.key === "/")
     handleInput(e.key, "operation");
+  // Maneja acciones especiales
   if (e.key === "Enter") handleInput(e.key, "equal");
   if (e.key === "Escape") handleInput(e.key, "clear");
   if (e.key === "Backspace") handleInput(e.key, "delete");
 });
 
 /*
-Encadenamiento de Operaciones vs Igual "="
+Encadenamiento de Operaciones vs Igual (=)
 
-Pense que mi código tenía un Bug de programación. Ya que al realizar una operación y presionar cualquier operaador, este me daba el resultado, siendo quien debe de presentar el resultado debe ser el signo de "=". Esto se debe que programé mi código para que pueda realizar más de una operación, antes de que presiones el "=".
+Pense que mi código tenía un Bug de programación. Ya que al realizar una operación y presionar cualquier operador, este me daba el resultado. Siendo quien debe de presentar el resultado, debe ser el signo de (=). Esto se debe que programé mi código para que pueda realizar más de una operación, antes de que presiones el (=).
 
-Si deseo que solamente el "=" sea el único que me pueda dar el resultado, tendría que reestringir el "Encadenamiento de Operaciones", ya que no puedes tener un encadenamiento y que solo sea el "=" quien presente el resultado.
+Si deseo que solamente el (=) sea el único que me pueda dar el resultado, tendría que restringir el Encadenamiento de Operaciones, ya que no puedes tener un encadenamiento y que solo sea el (=) quien presente el resultado.
  */
