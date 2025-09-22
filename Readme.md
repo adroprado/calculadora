@@ -2,7 +2,7 @@
 
 ### Descripción
 
-En esta calculadora se pueden realizar **operaciones básicas** como la **suma**, **resta**, **multiplicación**, **división**. Se puede hacer uso del **punto decimal** (`.`). Cuenta con botón de **limpiar pantalla** (`C`) y **borrar dígitos** (`<=`). Aunque su funcionalidad es básica puedes hacer un **Encadenamiento de Operaciones**.
+Este código implementa una aplicación de calculadora básica; se pueden realizar **operaciones básicas** como la **suma**, **resta**, **multiplicación**, **división**. Se puede hacer uso del **punto decimal** (`.`). Cuenta con botón de **limpiar pantalla** (`C`) y **borrar dígitos** (`<=`). Aunque su funcionalidad es básica puedes hacer un **Encadenamiento de Operaciones**.
 
 ### Herramientas
 
